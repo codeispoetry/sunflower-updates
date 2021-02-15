@@ -1,3 +1,3 @@
 deploy:
-	rsync ./* sharepic:/var/www/wordpress.tom-rose.de/updateserver
+	git push && rsync ./* sharepic:/var/www/wordpress.tom-rose.de/updateserver
 

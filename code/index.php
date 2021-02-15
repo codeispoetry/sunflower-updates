@@ -9,7 +9,7 @@ $url = $request['url'];
 
 $new_version = substr(file_get_contents('version.txt'), 1);
 $info = array (
-    'package' => SERVER . 'sunflower.zip',
+    'package' => SERVER . 'sunflower.zip?r=' . rand() ,
     'new_version' => $new_version,
     'url' => SERVER . 'release_notes.html'
 );
