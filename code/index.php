@@ -5,7 +5,7 @@ define('SERVER', 'https://wordpress.tom-rose.de/updateserver/');
 
 $request = unserialize($_POST['request']);
 $installed_version = $request['version'];
-$url = $request['url'];
+$url = $request['url'] ?: false;
 
 $new_version = substr(file_get_contents('version.txt'), 1);
 $info = array (
@@ -20,9 +20,10 @@ if ( version_compare( $installed_version, $new_version, '<' ) ){
 }
 
 $db = new SQLite3('log.db');
-//createDb($db);
-logthis( $db, $url, $installed_version );
-
+createDb($db);
+if($url){
+    logthis( $db, $url, $installed_version );
+}
 
 
 
@@ -57,6 +58,4 @@ function createDb( $db ){
         installed_sunflower_version TEXT,
         last_request_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )');
-
-    echo $db->lastErrorMsg();
 }

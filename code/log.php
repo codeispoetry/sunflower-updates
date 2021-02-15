@@ -9,7 +9,7 @@
 
 $db = new SQLite3('log.db');
 
-$results = $db->query('SELECT *, julianday("now") - julianday(last_request_time) AS daysSinceRequest FROM websites;');
+$results = $db->query('SELECT *, julianday("now") - julianday(last_request_time) AS daysSinceRequest FROM websites ORDER BY daysSinceRequest;');
 while ($row = $results->fetchArray()) {
     printf('<tr><td>%s</td><td>%s</td><td>%s</td></tr>',
         $row['url'],
