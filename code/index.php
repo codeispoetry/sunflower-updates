@@ -2,6 +2,11 @@
 
 define('SERVER', 'https://wordpress.tom-rose.de/updateserver/');
 
+
+$request = unserialize($_POST['request']);
+$installed_version = $request['version'];
+$url = $request['url'];
+
 $new_version = substr(file_get_contents('version.txt'), 1);
 $info = array (
     'package' => SERVER . 'sunflower.zip',
@@ -9,17 +14,13 @@ $info = array (
     'url' => SERVER . 'release_notes.html'
 );
 
-$request = unserialize($_POST['request']);
-$installed_version = $request['version'];
 
 if ( version_compare( $installed_version, $new_version, '<' ) ){
     echo serialize($info);
 }
 
-
 $db = new SQLite3('log.db');
 //createDb($db);
-$url = $_SERVER['REMOTE_ADDR'];
 logthis( $db, $url, $installed_version );
 
 
