@@ -35,7 +35,7 @@ function logthis($db, $url, $installed_version){
         WHERE url=:url'
     );
     $smt->bindValue(':url', $url, SQLITE3_TEXT);
-    $smt->bindValue(':installed_sunflower_version', $version, SQLITE3_TEXT);
+    $smt->bindValue(':installed_sunflower_version', $installed_version, SQLITE3_TEXT);
     $smt->execute();;
     if( $db->changes() === 1){
         return true;
@@ -45,7 +45,7 @@ function logthis($db, $url, $installed_version){
         'INSERT INTO websites (url,installed_sunflower_version,last_request_time) values (:url,:installed_sunflower_version,null)'
     );
     $smt->bindValue(':url', $url, SQLITE3_TEXT);
-    $smt->bindValue(':installed_sunflower_version', $version, SQLITE3_TEXT);
+    $smt->bindValue(':installed_sunflower_version', $installed_version, SQLITE3_TEXT);
     $smt->execute();
 }
 
