@@ -15,3 +15,6 @@ images-deploy:
 
 thumbnails:
 	rm code/images/thumbnails.jpg && montage -geometry 200x200+2+2 -tile 4x1 code/images/*.jpg code/images/thumbnails.jpg
+
+sync-db:
+	rsync sharepic:/var/www/sunflower-theme.de/updateserver/log.db code/log.db
