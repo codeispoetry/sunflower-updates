@@ -1,6 +1,6 @@
 <?php
 
-define('SERVER', 'https://wordpress.tom-rose.de/updateserver/');
+define('SERVER', 'https://sunflower-theme.de/updateserver/');
 
 
 $request = unserialize($_POST['request']);
@@ -20,7 +20,7 @@ if ( version_compare( $installed_version, $new_version, '<' ) ){
 }
 
 $db = new SQLite3('log.db');
-createDb($db);
+//createDb($db);
 if($url){
     logthis( $db, $url, $installed_version );
 }
