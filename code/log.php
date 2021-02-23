@@ -8,9 +8,11 @@
 
 <?php
 
+echo date('r');
+
 $db = new SQLite3('log.db');
 
-$results = $db->query('SELECT *, julianday("now") - julianday(last_request_time) AS daysSinceRequest FROM websites ORDER BY daysSinceRequest;');
+$results = $db->query('SELECT *, julianday("now") - julianday(last_request_time) AS daysSinceRequest FROM websites ORDER BY installed_sunflower_version DESC;');
 
 $i = 1;
 while ($row = $results->fetchArray()) {

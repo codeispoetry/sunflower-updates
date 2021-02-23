@@ -1,5 +1,5 @@
 up:
-	docker-compose up -d
+	docker-compose up -d && echo "port 9103"
 
 stop:
 	docker-compose stop
@@ -14,7 +14,7 @@ images-deploy:
 	make thumbnails && rsync -avh code/images/ sharepic:/var/www/sunflower-theme.de/updateserver/images/ --delete
 
 thumbnails:
-	rm code/images/thumbnails.jpg && montage -geometry 200x200+2+2 -tile 4x1 code/images/*.jpg code/images/thumbnails.jpg
+	rm code/images/thumbnails.jpg && montage -geometry 200x200+2+2 -tile 4x code/images/*.jpg code/images/thumbnails.jpg
 
 sync-db:
 	rsync sharepic:/var/www/sunflower-theme.de/updateserver/log.db code/log.db
